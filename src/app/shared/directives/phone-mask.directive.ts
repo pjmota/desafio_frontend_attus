@@ -47,4 +47,3 @@ export class PhoneMaskDirective implements OnChanges {
     }
   }
 }
-
