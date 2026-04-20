@@ -279,13 +279,3 @@ Abaixo a estrutura principal (simplificada) do monorepo Nx e do app Angular cont
 
 **Paulo José Mota**  
 📧 Email: [paulob1@hotmail.com](mailto:paulob1@hotmail.com)
-
----
-
-<div align="center">
-
-**Desenvolvido com ❤️ para otimizar a gestão de estacionamentos**
-
-*Sistema SmartPark - Transformando a experiência de gestão de vagas*
-
-</div>
