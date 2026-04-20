@@ -13,8 +13,9 @@
 .search-container {
   flex: 1 1 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-left: 155px;
 }
 
 .filter-field {
@@ -42,12 +43,12 @@
 }
 
 :host ::ng-deep .filter-field .mdc-text-field__input {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 :host ::ng-deep .filter-field .mat-mdc-form-field-infix {
-  min-height: 40px;
+  min-height: 32px;
   padding-top: 0;
   padding-bottom: 0;
 }

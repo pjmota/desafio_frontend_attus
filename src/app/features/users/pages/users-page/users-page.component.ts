@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { distinctUntilChanged, take } from 'rxjs/operators';
@@ -24,6 +25,7 @@ import { selectUsersError } from '../../store/users.selectors';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatTooltipModule,
   ],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',

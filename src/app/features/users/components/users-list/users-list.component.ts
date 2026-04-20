@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { User } from '../../models/user.model';
 import { formatCpf } from '../../../../shared/utils/cpf';
 import { formatPhone } from '../../../../shared/utils/phone';
@@ -31,12 +32,14 @@ import {
     MatIconModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatTooltipModule,
   ],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
 })
 export class UsersListComponent {
   private readonly store = inject(Store);
+  private expandedUserId: string | null = null;
 
   readonly editar = output<User>();
 
@@ -50,6 +53,14 @@ export class UsersListComponent {
   readonly pageSize$: Observable<number> = this.store.select(selectUsersPageSize);
   readonly loading$: Observable<boolean> = this.store.select(selectUsersLoading);
   readonly error$: Observable<string | null> = this.store.select(selectUsersError);
+
+  toggleDetalhes(userId: string): void {
+    this.expandedUserId = this.expandedUserId === userId ? null : userId;
+  }
+
+  isExpanded(userId: string): boolean {
+    return this.expandedUserId === userId;
+  }
 
   recarregar(): void {
     this.store.dispatch(loadUsers());

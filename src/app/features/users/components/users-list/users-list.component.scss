@@ -8,12 +8,24 @@
   margin: 8px 0 12px;
   opacity: 0.7;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
 }
 
 .list-count {
-  opacity: 0.75;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #1f1f1f;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 1;
 }
 
 .list-title,
@@ -53,18 +65,48 @@
   overflow: hidden;
 }
 
+.user-card-expanded {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+}
+
 :host ::ng-deep .user-card .mat-mdc-card-content {
   padding: 0;
 }
 
 .user-row {
   display: grid;
-  grid-template-columns: 32px minmax(160px, 1fr) minmax(180px, 1fr) 40px;
+  grid-template-columns: 1fr 40px;
+  align-items: center;
+  padding: 0;
+}
+
+.row-toggle {
+  display: grid;
+  grid-template-columns: 32px minmax(160px, 1fr) minmax(180px, 1fr);
   align-items: center;
   column-gap: 24px;
   row-gap: 0;
   min-height: 48px;
   padding: 0 12px;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.row-toggle:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.row-toggle:focus-visible {
+  outline: 2px solid rgba(25, 118, 210, 0.45);
+  outline-offset: -2px;
+}
+
+.edit-button {
+  justify-self: end;
 }
 
 .details {
@@ -119,8 +161,13 @@
   }
 
   .user-row {
-    grid-template-columns: 32px minmax(140px, 1fr) 40px;
-    grid-template-areas: 'avatar name edit' 'avatar email edit';
+    grid-template-columns: 1fr 40px;
+    align-items: start;
+  }
+
+  .row-toggle {
+    grid-template-columns: 32px minmax(140px, 1fr);
+    grid-template-areas: 'avatar name' 'avatar email';
     align-items: start;
     min-height: 64px;
     padding: 8px 12px;
@@ -140,7 +187,7 @@
   }
 
   .edit-button {
-    grid-area: edit;
+    margin-top: 4px;
   }
 
   .details {

@@ -1,7 +1,13 @@
 <section class="list-container">
   <h2 class="list-title">
     Usuários cadastrados
-    <span class="list-count">({{ (total$ | async) ?? 0 }})</span>
+    <span
+      class="list-count"
+      matTooltip="Quantidade de registros"
+      matTooltipPosition="above"
+    >
+      {{ (total$ | async) ?? 0 }}
+    </span>
   </h2>
 
   @if (loading$ | async) {
@@ -37,39 +43,50 @@
       } @else {
         <div class="cards">
           @for (user of (users$ | async) ?? []; track user.id) {
-            <mat-card class="user-card">
+            <mat-card class="user-card" [class.user-card-expanded]="isExpanded(user.id)">
               <mat-card-content>
                 <div class="user-row">
-                  <mat-icon class="avatar" aria-hidden="true">person</mat-icon>
+                  <button
+                    class="row-toggle"
+                    type="button"
+                    (click)="toggleDetalhes(user.id)"
+                    aria-label="Ver detalhes do usuário"
+                  >
+                    <mat-icon class="avatar" aria-hidden="true">person</mat-icon>
 
-                  <div class="name" [title]="user.name">{{ user.name }}</div>
-                  <div class="email" [title]="user.email">{{ user.email }}</div>
+                    <div class="name" [title]="user.name">{{ user.name }}</div>
+                    <div class="email" [title]="user.email">{{ user.email }}</div>
+                  </button>
 
                   <button
                     mat-icon-button
                     class="edit-button"
                     type="button"
                     aria-label="Editar usuário"
+                    matTooltip="Editar"
+                    matTooltipPosition="above"
                     (click)="editar.emit(user)"
                   >
                     <mat-icon>edit</mat-icon>
                   </button>
                 </div>
 
-                <div class="details">
-                  <div class="detail">
-                    <span class="label">CPF</span>
-                    <span class="value">{{ formatCpf(user.cpf) }}</span>
+                @if (isExpanded(user.id)) {
+                  <div class="details">
+                    <div class="detail">
+                      <span class="label">CPF</span>
+                      <span class="value">{{ formatCpf(user.cpf) }}</span>
+                    </div>
+                    <div class="detail">
+                      <span class="label">Telefone</span>
+                      <span class="value">{{ formatPhone(user.phone, user.phoneType) }}</span>
+                    </div>
+                    <div class="detail">
+                      <span class="label">Tipo</span>
+                      <span class="value">{{ user.phoneType }}</span>
+                    </div>
                   </div>
-                  <div class="detail">
-                    <span class="label">Telefone</span>
-                    <span class="value">{{ formatPhone(user.phone, user.phoneType) }}</span>
-                  </div>
-                  <div class="detail">
-                    <span class="label">Tipo</span>
-                    <span class="value">{{ user.phoneType }}</span>
-                  </div>
-                </div>
+                }
               </mat-card-content>
             </mat-card>
           }
