@@ -3,5 +3,5 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   testMatch: ['<rootDir>/src/**/*.spec.ts'],
   testEnvironment: 'jsdom',
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+  transformIgnorePatterns: [String.raw`node_modules/(?!.*\.mjs$)`],
 };
