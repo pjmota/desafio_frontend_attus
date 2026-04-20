@@ -1,0 +1,81 @@
+<h2 mat-dialog-title class="title">{{ title }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="salvar()">
+  <mat-dialog-content class="content">
+    <mat-form-field appearance="fill" subscriptSizing="dynamic">
+      <mat-label>Usuário (e-mail) *</mat-label>
+      <input matInput type="email" formControlName="email" />
+      @if (form.controls.email.touched && form.controls.email.hasError('required')) {
+        <mat-error>E-mail é obrigatório</mat-error>
+      } @else if (form.controls.email.touched && (form.controls.email.hasError('email') || form.controls.email.hasError('pattern'))) {
+        <mat-error>E-mail inválido</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" subscriptSizing="dynamic">
+      <mat-label>Nome completo *</mat-label>
+      <input matInput type="text" formControlName="name" />
+      @if (form.controls.name.touched && form.controls.name.hasError('required')) {
+        <mat-error>Nome é obrigatório</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="row">
+      <mat-form-field appearance="fill" subscriptSizing="dynamic">
+        <mat-label>CPF *</mat-label>
+        <input matInput type="text" formControlName="cpf" />
+        @if (form.controls.cpf.touched && form.controls.cpf.hasError('required')) {
+          <mat-error>CPF é obrigatório</mat-error>
+        } @else if (form.controls.cpf.touched && form.controls.cpf.hasError('cpfLength')) {
+          <mat-error>CPF deve ter 11 dígitos</mat-error>
+        } @else if (form.controls.cpf.touched && form.controls.cpf.hasError('cpfInvalid')) {
+          <mat-error>CPF inválido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" subscriptSizing="dynamic">
+        <mat-label>Número do telefone *</mat-label>
+        <input
+          matInput
+          type="tel"
+          formControlName="phone"
+          [appPhoneMask]="form.controls.phoneType.value"
+          autocomplete="tel"
+          inputmode="numeric"
+        />
+        @if (form.controls.phone.touched && form.controls.phone.hasError('required')) {
+          <mat-error>Telefone é obrigatório</mat-error>
+        } @else if (form.controls.phone.touched && form.controls.phone.hasError('phoneLength')) {
+          <mat-error>Telefone inválido</mat-error>
+        } @else if (form.controls.phone.touched && form.controls.phone.hasError('phoneMobileInvalid')) {
+          <mat-error>Celular deve iniciar com 9 após o DDD</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" subscriptSizing="dynamic">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="phoneType">
+          @for (type of phoneTypes; track type) {
+            <mat-option [value]="type">{{ type.toUpperCase() }}</mat-option>
+          }
+        </mat-select>
+        @if (
+          form.controls.phoneType.touched && form.controls.phoneType.hasError('required')
+        ) {
+          <mat-error>Tipo de telefone é obrigatório</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <p class="info">
+      O usuário receberá uma senha provisória para acesso ao sistema por SMS.
+    </p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="start" class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      SALVAR
+    </button>
+    <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,111 @@
+.list-container {
+  padding: 16px 0;
+}
+
+.list-title {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 8px 0 12px;
+  opacity: 0.7;
+}
+
+.list-title,
+.cards,
+.paginator,
+.state-error {
+  width: min(1640px, calc(100% - 300px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 240px;
+}
+
+.state-error {
+  max-width: 520px;
+  margin: 24px auto;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paginator {
+  background: transparent;
+}
+
+.user-card {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+:host ::ng-deep .user-card .mat-mdc-card-content {
+  padding: 0;
+}
+
+.user-row {
+  display: grid;
+  grid-template-columns: 32px minmax(160px, 1fr) minmax(180px, 1fr) 40px;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 0;
+  min-height: 48px;
+  padding: 0 12px;
+}
+
+.avatar {
+  opacity: 0.6;
+}
+
+.name,
+.email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.email {
+  opacity: 0.8;
+}
+
+@media (max-width: 720px) {
+  .list-container {
+    padding: 12px 0;
+  }
+
+  .user-row {
+    grid-template-columns: 32px minmax(140px, 1fr) 40px;
+    grid-template-areas: 'avatar name edit' 'avatar email edit';
+    align-items: start;
+    min-height: 64px;
+    padding: 8px 12px;
+  }
+
+  .avatar {
+    grid-area: avatar;
+    margin-top: 4px;
+  }
+
+  .name {
+    grid-area: name;
+  }
+
+  .email {
+    grid-area: email;
+  }
+
+  .edit-button {
+    grid-area: edit;
+  }
+}

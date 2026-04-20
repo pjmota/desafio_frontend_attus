@@ -1,0 +1,88 @@
+.toolbar {
+  background: #5e5e5e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.toolbar .user-name {
+  font-weight: 400;
+}
+
+.search-container {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-400px);
+}
+
+.filter-field {
+  width: min(340px, 60vw);
+  margin: 0 0 0 8px;
+  --mdc-outlined-text-field-input-text-color: #f1f1ed;
+  --mdc-outlined-text-field-label-text-color: rgba(255, 255, 255, 0.85);
+  --mdc-outlined-text-field-placeholder-text-color: #f1f1ed;
+  --mdc-outlined-text-field-outline-color: transparent;
+  --mdc-outlined-text-field-hover-outline-color: transparent;
+  --mdc-outlined-text-field-focus-outline-color: transparent;
+}
+
+:host ::ng-deep .filter-field .mdc-text-field--outlined {
+  background: #717171;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .filter-field .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+:host ::ng-deep .filter-field .mdc-text-field {
+  padding: 0;
+}
+
+:host ::ng-deep .filter-field .mdc-text-field__input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+:host ::ng-deep .filter-field .mat-mdc-form-field-infix {
+  min-height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+:host ::ng-deep .filter-field .mat-mdc-form-field-icon-prefix {
+  padding-top: 0;
+  padding-bottom: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:host ::ng-deep .filter-field .mdc-notched-outline {
+  display: none;
+}
+
+:host ::ng-deep .filter-field .mat-mdc-input-element,
+:host ::ng-deep .filter-field .mdc-text-field__input {
+  color: #f1f1ed !important;
+  caret-color: #f1f1ed !important;
+}
+
+:host ::ng-deep .filter-field .mat-mdc-input-element::placeholder,
+:host ::ng-deep .filter-field .mdc-text-field__input::placeholder {
+  color: #f1f1ed !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 640px) {
+  .search-container {
+    justify-content: center;
+    transform: none;
+  }
+
+  .filter-field {
+    width: min(240px, 60vw);
+    margin: 0 8px;
+  }
+}
+

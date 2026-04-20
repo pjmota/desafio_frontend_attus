@@ -1,0 +1,57 @@
+<section class="list-container">
+  <h2 class="list-title">Usuários cadastrados</h2>
+
+  @if (loading$ | async) {
+    <div class="state state-loading">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Carregando...</p>
+    </div>
+  } @else {
+    @if (error$ | async; as error) {
+      <mat-card class="state state-error">
+        <mat-card-title>Erro</mat-card-title>
+        <mat-card-content>{{ error }}</mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="button" (click)="recarregar()">
+            Tentar novamente
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    } @else {
+      <div class="cards">
+        @for (user of (users$ | async) ?? []; track user.id) {
+          <mat-card class="user-card">
+            <mat-card-content>
+              <div class="user-row">
+                <mat-icon class="avatar" aria-hidden="true">person</mat-icon>
+
+                <div class="name" [title]="user.name">{{ user.name }}</div>
+                <div class="email" [title]="user.email">{{ user.email }}</div>
+
+                <button
+                  mat-icon-button
+                  class="edit-button"
+                  type="button"
+                  aria-label="Editar usuário"
+                  (click)="editar.emit(user)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+
+      <mat-paginator
+        class="paginator"
+        [length]="(total$ | async) ?? 0"
+        [pageIndex]="(pageIndex$ | async) ?? 0"
+        [pageSize]="(pageSize$ | async) ?? 10"
+        [pageSizeOptions]="[5, 10, 25]"
+        (page)="mudarPagina($event)"
+        aria-label="Paginação de usuários"
+      />
+    }
+  }
+</section>

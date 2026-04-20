@@ -1,0 +1,19 @@
+<mat-toolbar class="toolbar">
+  <button mat-icon-button type="button" aria-label="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="user-name">{{ loggedUserName ?? 'USUÁRIOS' }}</span>
+
+  <div class="search-container">
+    <mat-form-field appearance="outline" class="filter-field" subscriptSizing="dynamic">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="text"
+        placeholder="Pesquisar..."
+        [formControl]="nameFilterControl"
+      />
+    </mat-form-field>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,17 @@
+<div class="page">
+  <app-users-header />
+
+  <app-users-list (editar)="abrirEdicao($event)" />
+
+  <button
+    mat-fab
+    color="warn"
+    class="fab"
+    type="button"
+    aria-label="Novo usuário"
+    (click)="abrirNovoUsuario()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
