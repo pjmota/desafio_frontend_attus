@@ -8,7 +8,7 @@
       @if (form.controls.email.touched && form.controls.email.hasError('required')) {
         <mat-error>E-mail é obrigatório</mat-error>
       } @else if (form.controls.email.touched && (form.controls.email.hasError('email') || form.controls.email.hasError('pattern'))) {
-        <mat-error>E-mail inválido</mat-error>
+        <mat-error>E-mail digitado não corresponde com o formato de um e-mail</mat-error>
       }
     </mat-form-field>
 
@@ -16,19 +16,25 @@
       <mat-label>Nome completo *</mat-label>
       <input matInput type="text" formControlName="name" />
       @if (form.controls.name.touched && form.controls.name.hasError('required')) {
-        <mat-error>Nome é obrigatório</mat-error>
+        <mat-error>Necessário digitar o nome</mat-error>
       }
     </mat-form-field>
 
     <div class="row">
       <mat-form-field appearance="fill" subscriptSizing="dynamic">
         <mat-label>CPF *</mat-label>
-        <input matInput type="text" formControlName="cpf" />
+        <input
+          matInput
+          type="text"
+          formControlName="cpf"
+          appCpfMask
+          inputmode="numeric"
+          autocomplete="off"
+          maxlength="14"
+        />
         @if (form.controls.cpf.touched && form.controls.cpf.hasError('required')) {
           <mat-error>CPF é obrigatório</mat-error>
-        } @else if (form.controls.cpf.touched && form.controls.cpf.hasError('cpfLength')) {
-          <mat-error>CPF deve ter 11 dígitos</mat-error>
-        } @else if (form.controls.cpf.touched && form.controls.cpf.hasError('cpfInvalid')) {
+        } @else if (form.controls.cpf.touched && (form.controls.cpf.hasError('cpfLength') || form.controls.cpf.hasError('cpfInvalid'))) {
           <mat-error>CPF inválido</mat-error>
         }
       </mat-form-field>
@@ -46,9 +52,9 @@
         @if (form.controls.phone.touched && form.controls.phone.hasError('required')) {
           <mat-error>Telefone é obrigatório</mat-error>
         } @else if (form.controls.phone.touched && form.controls.phone.hasError('phoneLength')) {
-          <mat-error>Telefone inválido</mat-error>
+          <mat-error>Está faltando dígito</mat-error>
         } @else if (form.controls.phone.touched && form.controls.phone.hasError('phoneMobileInvalid')) {
-          <mat-error>Celular deve iniciar com 9 após o DDD</mat-error>
+          <mat-error>Está faltando dígito</mat-error>
         }
       </mat-form-field>
 

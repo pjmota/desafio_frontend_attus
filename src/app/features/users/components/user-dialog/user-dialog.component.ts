@@ -12,6 +12,7 @@ import { PhoneType, User } from '../../models/user.model';
 import { cpfValidator } from '../../../../shared/validators/cpf.validator';
 import { phoneValidator } from '../../../../shared/validators/phone.validator';
 import { PhoneMaskDirective } from '../../../../shared/directives/phone-mask.directive';
+import { CpfMaskDirective } from '../../../../shared/directives/cpf-mask.directive';
 
 export type UserDialogData = {
   user?: User;
@@ -29,6 +30,7 @@ export type UserDialogData = {
     MatSelectModule,
     MatButtonModule,
     PhoneMaskDirective,
+    CpfMaskDirective,
   ],
   templateUrl: './user-dialog.component.html',
   styleUrl: './user-dialog.component.scss',
