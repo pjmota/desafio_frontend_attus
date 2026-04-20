@@ -8,9 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { User } from '../../models/user.model';
+import { formatCpf } from '../../../../shared/utils/cpf';
+import { formatPhone } from '../../../../shared/utils/phone';
 import { loadUsers, setUsersPagination } from '../../store/users.actions';
 import {
   selectFilteredUsersCount,
+  selectNameFilter,
   selectPagedUsers,
   selectUsersPageIndex,
   selectUsersPageSize,
@@ -37,8 +40,12 @@ export class UsersListComponent {
 
   readonly editar = output<User>();
 
+  readonly formatCpf = formatCpf;
+  readonly formatPhone = formatPhone;
+
   readonly users$: Observable<readonly User[]> = this.store.select(selectPagedUsers);
   readonly total$: Observable<number> = this.store.select(selectFilteredUsersCount);
+  readonly nameFilter$: Observable<string> = this.store.select(selectNameFilter);
   readonly pageIndex$: Observable<number> = this.store.select(selectUsersPageIndex);
   readonly pageSize$: Observable<number> = this.store.select(selectUsersPageSize);
   readonly loading$: Observable<boolean> = this.store.select(selectUsersLoading);

@@ -7,6 +7,13 @@
   font-weight: 400;
   margin: 8px 0 12px;
   opacity: 0.7;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.list-count {
+  opacity: 0.75;
 }
 
 .list-title,
@@ -60,6 +67,33 @@
   padding: 0 12px;
 }
 
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 16px;
+  padding: 8px 12px 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.value {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .avatar {
   opacity: 0.6;
 }
@@ -107,5 +141,9 @@
 
   .edit-button {
     grid-area: edit;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
   }
 }

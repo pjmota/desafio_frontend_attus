@@ -3,6 +3,7 @@
   color: #ffffff;
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .toolbar .user-name {
@@ -14,12 +15,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateX(-400px);
 }
 
 .filter-field {
   width: min(340px, 60vw);
-  margin: 0 0 0 8px;
+  margin: 0;
   --mdc-outlined-text-field-input-text-color: #f1f1ed;
   --mdc-outlined-text-field-label-text-color: rgba(255, 255, 255, 0.85);
   --mdc-outlined-text-field-placeholder-text-color: #f1f1ed;
@@ -77,12 +77,11 @@
 @media (max-width: 640px) {
   .search-container {
     justify-content: center;
-    transform: none;
   }
 
   .filter-field {
     width: min(240px, 60vw);
-    margin: 0 8px;
+    margin: 0;
   }
 }
 
